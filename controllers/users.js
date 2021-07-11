@@ -1,0 +1,108 @@
+const User = require("../models/user.js");
+
+
+
+const getUsuarios = async (req, res) => {
+
+    const usuarios = await User.findAll();
+
+    res.json({ usuarios });
+
+}
+const getUsuario = async (req, res) => {
+    const { id } = req.params;
+    const usuario = await User.findByPk(id);
+
+
+    if (usuario) {
+        res.json({ usuario })
+    }
+    else {
+        res.status(404).json({
+            msg: `No existe un usuario con el id ${id}`
+        });
+    }
+
+}
+
+const postUsuario = async (req, res) => {
+
+    const { body } = req;
+    try {
+
+    const usuario = new User(body);
+    await usuario.save();
+
+        res.json( usuario )
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            msg: 'Hable con el administrador',
+          
+        });
+    }
+   
+
+}
+
+const putUsuario = async (req, res) => {
+
+    const { id } = req.params
+    const { body } = req;
+    try {
+        const usuario = await User.findByPk( id )
+        if (!usuario) {
+            return res.status(404).json({
+                msg: 'No existe un usuario con el id'+ id
+            });
+        }
+
+        await usuario.update( body );
+
+        res.json( usuario );
+
+
+
+    } catch (error) {
+        
+    }
+    res.json({
+        msg: 'putUsuario',
+        body,
+        id
+    })
+
+}
+const deleteUsuario = async (req, res) => {
+
+    const { id } = req.params;
+
+    const usuario = await User.findByPk( id )
+        if (!usuario) {
+            return res.status(404).json({
+                msg: 'No existe un usuario con el id'+ id
+            });
+        }
+
+    await usuario.destroy();
+
+
+
+    res.json(usuario)
+
+}
+
+
+
+
+
+
+module.exports = {
+    getUsuarios,
+    getUsuario,
+    postUsuario,
+    putUsuario,
+    deleteUsuario
+
+
+}
