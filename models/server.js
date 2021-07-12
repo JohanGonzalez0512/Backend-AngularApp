@@ -14,6 +14,7 @@ class Server {
         this.apiPaths = {
             usuarios: '/api/usuarios',
             uploads: '/api/uploads'
+
         }
         this.dbConnection();
         // Middlewares
@@ -45,12 +46,17 @@ class Server {
             tempFileDir : '/tmp/',
             createParentPath: true
         }));
+
+        this.app.use( express.static('public'));
     }
 
 
     routes() {
         this.app.use(this.apiPaths.usuarios, userRouter)
         this.app.use(this.apiPaths.uploads,  uploadRouter)
+        this.app.use('/',(req, res)=> {
+            res.send('Hola Mundo')
+        })
     }
 
     listen() {
