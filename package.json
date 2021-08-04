@@ -5,16 +5,18 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "node app"
+    "start": "node app"
   },
   "author": "Johan Gonzalez",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-validator": "^6.12.0",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.4",

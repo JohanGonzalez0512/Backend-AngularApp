@@ -2,7 +2,7 @@ const { response } = require("express");
 const path = require('path')
 const fs = require('fs')
 const { subirArchivo } = require("../helpers/subir-archivo");
-const  User = require('../models/user')
+const  {User} = require('../models/index')
 const cargarArchivo = async (req, res) => {
 
 try {

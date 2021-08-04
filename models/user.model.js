@@ -4,7 +4,8 @@ const User = db.define('user',{
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        allowNull : false
     },
     name:{
         type: DataTypes.STRING(50),
@@ -25,6 +26,18 @@ const User = db.define('user',{
         defaultValue : ""
         
     },
+    username:{
+        type:DataTypes.STRING(50),
+        allowNull : false,
+        unique : true,
+        validate : {
+            notEmpty:true,
+        }
+    },
+    password:{
+        type: DataTypes.STRING(255),
+        allowNull: false
+    }
     
 },{
     timestamps : false,

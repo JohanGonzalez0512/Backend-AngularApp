@@ -1,15 +1,15 @@
-const User = require("../models/user.js");
+const User = require("../models/user.model.js");
 
 
 
-const getUsuarios = async (req, res) => {
+const getUsers = async (req, res) => {
 
     const usuarios = await User.findAll();
 
     res.json({ usuarios });
 
 }
-const getUsuario = async (req, res) => {
+const getUserById = async (req, res) => {
     const { id } = req.params;
     const usuario = await User.findByPk(id);
 
@@ -25,7 +25,7 @@ const getUsuario = async (req, res) => {
 
 }
 
-const postUsuario = async (req, res) => {
+const postUser = async (req, res) => {
 
     const { body } = req;
     try {
@@ -45,7 +45,7 @@ const postUsuario = async (req, res) => {
 
 }
 
-const putUsuario = async (req, res) => {
+const putUser = async (req, res) => {
 
     const { id } = req.params
     const { body } = req;
@@ -73,7 +73,7 @@ const putUsuario = async (req, res) => {
     })
 
 }
-const deleteUsuario = async (req, res) => {
+const deleteUser = async (req, res) => {
 
     const { id } = req.params;
 
@@ -97,12 +97,14 @@ const deleteUsuario = async (req, res) => {
 
 
 
+
+
 module.exports = {
-    getUsuarios,
-    getUsuario,
-    postUsuario,
-    putUsuario,
-    deleteUsuario
+    getUsers,
+    getUserById,
+    postUser,
+    putUser,
+    deleteUser,
 
 
 }
